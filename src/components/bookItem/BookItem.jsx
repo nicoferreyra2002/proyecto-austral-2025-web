@@ -1,5 +1,6 @@
-import { Card, } from "react-bootstrap";
+import { Badge, Card, Button } from "react-bootstrap";
 
+import './bookItem.css';
 
 const BookItem = ({
     title,
@@ -11,17 +12,26 @@ const BookItem = ({
 }) => {
 
     return (
-        <Card className="mx-3">
+        <Card className="book-container mx-3">
             <Card.Img
                 height={400}
                 src={imageUrl}
                 variant="top"
             />
-            <h1>{title}</h1>
-            <h3>{author}</h3>
-            <p>{rating} estrellas</p>
-            <p>{pageCount} páginas</p>
-            <p>{available ? "Disponible" : "No disponible"}</p>
+            <Card.Body>
+                <div className="mb-2">
+                    {available ?
+                        <Badge bg="success">Disponible</Badge>
+                        : <Badge bg="danger">Reservado</Badge>
+                    }
+                </div>
+                <Card.Title>{title}</Card.Title>
+                <Card.Subtitle>{author}</Card.Subtitle>
+                <p>{rating} estrella{rating > 1 ? 's' : ''}</p>
+                <p>{pageCount} páginas</p>
+                <p>{available ? "Disponible" : "No disponible"}</p>
+                <Button>Actualizar título</Button>
+            </Card.Body>
         </Card>
     )
 }
