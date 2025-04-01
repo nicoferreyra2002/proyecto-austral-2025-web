@@ -12,7 +12,7 @@ const BookItem = ({
 }) => {
 
     return (
-        <Card className="book-container mx-3">
+        <Card className="book-container mx-3 mb-2">
             <Card.Img
                 height={400}
                 src={imageUrl}
