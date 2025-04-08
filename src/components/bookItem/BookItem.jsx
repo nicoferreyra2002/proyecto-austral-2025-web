@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Badge, Card, Button } from "react-bootstrap";
 
 import './bookItem.css';
@@ -10,6 +11,12 @@ const BookItem = ({
     imageUrl,
     available = false
 }) => {
+    const [newTitle, setNewTitle] = useState(title);
+
+    const handleClick = () => {
+        setNewTitle('Actualizado!');
+        console.log(title);
+    }
 
     return (
         <Card className="book-container mx-3 mb-2">
@@ -25,12 +32,12 @@ const BookItem = ({
                         : <Badge bg="danger">Reservado</Badge>
                     }
                 </div>
-                <Card.Title>{title}</Card.Title>
+                <Card.Title>{newTitle}</Card.Title>
                 <Card.Subtitle>{author}</Card.Subtitle>
                 <p>{rating} estrella{rating > 1 ? 's' : ''}</p>
                 <p>{pageCount} páginas</p>
                 <p>{available ? "Disponible" : "No disponible"}</p>
-                <Button>Actualizar título</Button>
+                <Button onClick={handleClick}>Actualizar título</Button>
             </Card.Body>
         </Card>
     )
