@@ -33,11 +33,30 @@ const NewBook = () => {
         setAvailable(event.target.checked)
     }
 
+    const handleAddBook = (event) => {
+        event.preventDefault();
+        const newBook = {
+            title,
+            author,
+            rating,
+            pageCount,
+            imageUrl,
+            available
+        };
+
+        console.log(newBook);
+        setTitle('');
+        setAuthor('');
+        setRating('');
+        setPageCount('');
+        setImageUrl('');
+        setAvailable(false);
+    }
 
     return (
         <Card className="m-4 w-50" bg="success">
             <Card.Body>
-                <Form className="text-white" >
+                <Form className="text-white" onSubmit={handleAddBook} >
                     <Row>
                         <Col md={6}>
                             <Form.Group className="mb-3" controlId="title">
@@ -45,7 +64,8 @@ const NewBook = () => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Ingresar título"
-
+                                    onChange={handleChangeTitle}
+                                    value={title}
                                 />
                             </Form.Group>
                         </Col>
@@ -55,6 +75,8 @@ const NewBook = () => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Ingresar autor"
+                                    onChange={handleChangeAuthor}
+                                    value={author}
                                 />
                             </Form.Group>
                         </Col>
@@ -68,6 +90,8 @@ const NewBook = () => {
                                     placeholder="Ingresar cantidad de estrellas"
                                     max={5}
                                     min={0}
+                                    onChange={handleChangeRating}
+                                    value={rating}
 
                                 />
                             </Form.Group>
@@ -79,6 +103,8 @@ const NewBook = () => {
                                     type="number"
                                     placeholder="Ingresar cantidad de páginas"
                                     min={1}
+                                    onChange={handleChangePageCount}
+                                    value={pageCount}
 
                                 />
                             </Form.Group>
@@ -90,6 +116,8 @@ const NewBook = () => {
                             <Form.Control
                                 type="text"
                                 placeholder="Ingresar url de imagen"
+                                onChange={handleChangeImageUrl}
+                                value={imageUrl}
                             />
                         </Form.Group>
                     </Row>
@@ -100,6 +128,8 @@ const NewBook = () => {
                                 id="available"
                                 className="mb-3"
                                 label="¿Disponible?"
+                                onChange={handleChangeAvailability}
+                                checked={available}
 
                             />
                             <Button variant="primary" type="submit">
