@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
-const NewBook = () => {
+const NewBook = ({ onBookAdded }) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [rating, setRating] = useState('');
@@ -44,7 +44,7 @@ const NewBook = () => {
             available
         };
 
-        console.log(newBook);
+        onBookAdded(newBook);
         setTitle('');
         setAuthor('');
         setRating('');
@@ -92,7 +92,6 @@ const NewBook = () => {
                                     min={0}
                                     onChange={handleChangeRating}
                                     value={rating}
-
                                 />
                             </Form.Group>
                         </Col>
